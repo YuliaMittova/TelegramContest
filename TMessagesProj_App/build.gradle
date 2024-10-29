@@ -114,6 +114,17 @@ android {
     flavorDimensions "minApi"
 
     productFlavors {
+        contest {
+            ndk {
+                abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+            }
+            sourceSets.release {
+                manifest.srcFile '../TMessagesProj/config/release/AndroidManifest_SDK23.xml'
+            }
+            ext {
+                abiVersionCode = 9
+            }
+        }
         bundleAfat {
             ndk {
                 abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
