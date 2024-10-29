@@ -240,6 +240,7 @@ import org.telegram.ui.Components.Premium.boosts.PremiumPreviewGiftLinkBottomShe
 import org.telegram.ui.Components.Reactions.ChatSelectionReactionMenuOverlay;
 import org.telegram.ui.Components.Reactions.ReactionsEffectOverlay;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
+import org.telegram.ui.Components.ScheduledLiveStream.ScheduledLiveStreamTopView;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.Components.voip.BotButtonHintView;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
@@ -267,8 +268,8 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.IDN;
 import java.net.URLDecoder;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -440,6 +441,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private boolean addToContactsButtonArchive;
     @Nullable
     private TextView reportSpamButton;
+    @Nullable
+    private ScheduledLiveStreamTopView scheduledLiveStreamView;
     @Nullable
     private TextView restartTopicButton;
     @Nullable
@@ -6418,6 +6421,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         closeReportSpam = null;
         translateButton = null;
         bizBotButton = null;
+        scheduledLiveStreamView = null;
 
         pagedownButton = new FrameLayout(context);
         pagedownButton.setVisibility(View.INVISIBLE);
@@ -9319,6 +9323,18 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             updateTopPanel(true);
             updateInfoTopView(true);
         });
+
+        // This feature probably will be a part of AB test and needed check will be added here.
+        // Also the start time of Scheduled Live Stream most probably will be probably sent from server as a part of "Chat" or "ChatInfo" object.
+        final OffsetDateTime startDateTime = OffsetDateTime.now().plusHours(1);
+        scheduledLiveStreamView = new ScheduledLiveStreamTopView(getContext(), startDateTime);
+        scheduledLiveStreamView.setOnNotifyClickListener(v -> {
+            Bulletin bulletin = BulletinFactory
+                    .of(ChatActivity.this)
+                    .createScheduledLiveStream(themeDelegate, 8_000);
+            bulletin.show(false);
+        });
+        topChatPanelView.addView(scheduledLiveStreamView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 64, Gravity.LEFT | Gravity.TOP, 0, 0, 0, 1));
     }
 
     private void createTranslateButton() {
@@ -12281,6 +12297,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         if (checksHintView != null) {
             checksHintView.hide();
+        }
+        if (botMessageHint != null) {
+            botMessageHint.hide();
         }
     }
 

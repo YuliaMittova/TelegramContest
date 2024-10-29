@@ -742,6 +742,15 @@ public final class BulletinFactory {
         return create(layout, Bulletin.DURATION_SHORT);
     }
 
+    public Bulletin createScheduledLiveStream(Theme.ResourcesProvider resourcesProvider, int duration) {
+        final Bulletin.LottieLayout layout = new Bulletin.LottieLayout(getContext(), resourcesProvider);
+        layout.setAnimation(R.raw.silent_unmute);
+        layout.textView.setText(LocaleController.getString(R.string.ScheduledLiveStream_hint));
+        layout.textView.setPadding(24, 16, 24, 16);
+        layout.textView.setSingleLine(false);
+        return create(layout, duration);
+    }
+
     @CheckResult
     public Bulletin createDownloadBulletin(FileType fileType, int filesAmount, int backgroundColor, int textColor) {
         return createDownloadBulletin(fileType, filesAmount, backgroundColor, textColor, null);

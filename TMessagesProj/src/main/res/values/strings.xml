@@ -8187,4 +8187,10 @@
     <string name="InviteLinkBottomSheet_manageInviteLinks">Manage Invite Links</string>
     <string name="invite_link_image_description">Invite Link Image</string>
     <string name="InviteLinkBottomSheet_qrCodeDescription">Invite link QR code</string>
+    <string name="ScheduledLiveStream_title">Scheduled Live Stream</string>
+    <string name="ScheduledLiveStream_description">Starts on %s</string>
+    <string name="ScheduledLiveStream_actionButton">Notify Me</string>
+    <string name="ScheduledLiveStream_hint">You will be notified when the live stream starts.</string>
+    <string name="ScheduledLiveStream_countdownFormat">%s:%s:%s</string>
+    <string name="ScheduledLiveStream_startsOnFormat">Starts on %s at %s</string>
 </resources>

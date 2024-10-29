@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingHorizontal="18dp"
+    android:paddingVertical="12dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/ScheduledLiveStream_title"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/scheduledLiveStream_startsOnText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:clickable="false"
+        tools:text="Starts on Nov 12 at 18:00" />
+
+    <TextView
+        android:id="@+id/scheduledLiveStream_countdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|end"
+        android:background="@drawable/rounded_button_gradient_background"
+        android:clickable="false"
+        android:fontFamily="sans-serif-medium"
+        android:paddingHorizontal="13dp"
+        android:paddingVertical="6dp"
+        android:text="@string/ScheduledLiveStream_actionButton"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white" />
+
+</FrameLayout>
