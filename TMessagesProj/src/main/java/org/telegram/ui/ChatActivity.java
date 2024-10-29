@@ -7978,7 +7978,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
             // We can configure showing tip depending on the time spent on this screen without interaction
             final HintView2 chatBotTooltip = new BotButtonHintView(context, HintView2.DIRECTION_BOTTOM, 0xAF282828, 16)
-                    .setIconWithSize(R.raw.download_arrow, 28)
+                    .setIconWithSize(R.raw.double_down_arrow, 28)
                     .setMultilineText(true)
                     .setTextAlign(Layout.Alignment.ALIGN_CENTER)
                     .setDuration(8_000)
