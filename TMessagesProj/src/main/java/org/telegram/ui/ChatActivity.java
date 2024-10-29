@@ -108,6 +108,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.TooltipCompat;
 import androidx.collection.LongSparseArray;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
@@ -240,6 +241,7 @@ import org.telegram.ui.Components.Reactions.ChatSelectionReactionMenuOverlay;
 import org.telegram.ui.Components.Reactions.ReactionsEffectOverlay;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
+import org.telegram.ui.Components.voip.BotButtonHintView;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 import org.telegram.ui.Components.voip.VoIPHelper;
 import org.telegram.ui.Delegates.ChatActivityMemberRequestsDelegate;
@@ -7953,12 +7955,48 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         bottomOverlayStartButton.setGravity(Gravity.CENTER);
         bottomOverlayStartButton.setTypeface(AndroidUtilities.bold());
         bottomOverlayStartButton.setVisibility(View.GONE);
+        TooltipCompat.setTooltipText(bottomOverlayStartButton, getString(R.string.TapToUserBotHint));
         bottomOverlayStartButton.setOnClickListener(v -> bottomOverlayChatText.callOnClick());
         bottomOverlayChat.addView(bottomOverlayStartButton, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT, Gravity.CENTER, 8, 8, 8, 8));
 
-        if (currentUser != null && currentUser.bot && currentUser.id != UserObject.VERIFY && !UserObject.isDeleted(currentUser) && !UserObject.isReplyUser(currentUser) && !isInScheduleMode() && chatMode != MODE_PINNED && chatMode != MODE_SAVED && !isReport()) {
+        if (currentUser != null
+                && currentUser.bot
+                && currentUser.id != UserObject.VERIFY
+                && !UserObject.isDeleted(currentUser)
+                && !UserObject.isReplyUser(currentUser)
+                && !isInScheduleMode()
+                && chatMode != MODE_PINNED
+                && chatMode != MODE_SAVED
+                && !isReport()
+        ) {
             bottomOverlayStartButton.setVisibility(View.VISIBLE);
             bottomOverlayChat.setVisibility(View.VISIBLE);
+
+            // We can configure showing tip depending on the time spent on this screen without interaction
+            final HintView2 chatBotTooltip = new BotButtonHintView(context, HintView2.DIRECTION_BOTTOM, 0xAF282828, 16)
+                    .setIconWithSize(R.raw.download_arrow, 28)
+                    .setMultilineText(true)
+                    .setTextAlign(Layout.Alignment.ALIGN_CENTER)
+                    .setDuration(8_000)
+                    .setHideByTouch(true)
+                    .setMaxWidth(320)
+                    .useScale(true)
+                    .setInnerPadding(10, 6, 10, 6)
+                    .setRounding(8)
+                    .setJointPx(0.5f, 0f)
+                    .setText(LocaleController.getString(R.string.TapToUserBotHint));
+
+            final FrameLayout.LayoutParams layoutParams = LayoutHelper.createFrame(
+                    LayoutHelper.WRAP_CONTENT,
+                    LayoutHelper.WRAP_CONTENT,
+                    Gravity.BOTTOM,
+                    19,
+                    0,
+                    19,
+                    bottomOverlayChat.getHeight() + AndroidUtilities.dp(26)
+            );
+            contentView.addView(chatBotTooltip, layoutParams);
+            chatBotTooltip.show();
         }
 
         bottomOverlayLinksText = new LinkSpanDrawable.LinksTextView(context, themeDelegate);
