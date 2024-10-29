@@ -8180,4 +8180,11 @@
     <string name="Gift2ButtonSendGift">send a gift</string>
     <string name="Gift2ButtonSell_one">sell for %d Star</string>
     <string name="Gift2ButtonSell_other">sell for %d Stars</string>
+    <string name="InviteLinkBottomSheet_title">Invite Link</string>
+    <string name="InviteLinkBottomSheet_description">Anyone who has Telegram installed will be able to join your group by following this link.</string>
+    <string name="InviteLinkBottomSheet_copyButton">Copy</string>
+    <string name="InviteLinkBottomSheet_shareButton">Share</string>
+    <string name="InviteLinkBottomSheet_manageInviteLinks">Manage Invite Links</string>
+    <string name="invite_link_image_description">Invite Link Image</string>
+    <string name="InviteLinkBottomSheet_qrCodeDescription">Invite link QR code</string>
 </resources>

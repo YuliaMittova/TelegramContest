@@ -9256,14 +9256,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         users.put(chatInfo.participants.participants.get(a).user_id, null);
                     }
                     long chatId = chatInfo.id;
-                    InviteMembersBottomSheet bottomSheet = new InviteMembersBottomSheet(getContext(), currentAccount, users, chatInfo.id, ChatActivity.this, themeDelegate);
-                    bottomSheet.setDelegate((users1, fwdCount) -> {
-                        getMessagesController().addUsersToChat(currentChat, ChatActivity.this, users1, fwdCount, null, null, null);
-                        getMessagesController().hidePeerSettingsBar(dialog_id, currentUser, currentChat);
-                        updateTopPanel(true);
-                        updateInfoTopView(true);
-                    });
-                    bottomSheet.show();
+
+                    // This shows the new "Invite link" bottom sheet
+                    InviteLinkQRCodeBottomSheet qrCodeBottomSheet = new InviteLinkQRCodeBottomSheet(getContext(), chatId);
+                    qrCodeBottomSheet.makeAttached(this);
+                    qrCodeBottomSheet.show();
                 }
             } else if (addToContactsButton.getTag() != null) {
                 shareMyContact(1, null);

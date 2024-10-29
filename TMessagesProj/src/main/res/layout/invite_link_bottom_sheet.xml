@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_invite_bottom_sheet"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:paddingBottom="24dp">
+
+    <ImageView
+        android:id="@+id/inviteLinkBottomSheet_image"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="24dp"
+        android:contentDescription="@string/invite_link_image_description"
+        android:src="@drawable/invite_link_central_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/inviteLinkBottomSheet_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/InviteLink"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inviteLinkBottomSheet_image" />
+
+    <TextView
+        android:id="@+id/inviteLinkBottomSheet_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:gravity="center"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:text="@string/InviteLinkBottomSheet_description"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inviteLinkBottomSheet_title" />
+
+    <FrameLayout
+        android:id="@+id/inviteLinkBottomSheet_linkContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/bg_invite_link_container"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inviteLinkBottomSheet_description">
+
+        <TextView
+            android:id="@+id/inviteLinkBottomSheet_linkText"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start|center_vertical"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/inviteLinkBottomSheet_qrIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:contentDescription="@string/InviteLinkBottomSheet_qrCodeDescription"
+            android:src="@drawable/msg_qrcode" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/inviteLinkBottomSheet_copyButtonContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="6dp"
+        android:background="@drawable/bg_invite_link_button"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintEnd_toStartOf="@+id/inviteLinkBottomSheet_shareButtonContainer"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/inviteLinkBottomSheet_linkContainer"
+        app:layout_constraintTop_toBottomOf="@id/inviteLinkBottomSheet_linkContainer"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/inviteLinkBottomSheet_copyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:clickable="false"
+            android:drawableLeft="@drawable/msg_copy_filled"
+            android:gravity="center"
+            android:text="@string/InviteLinkBottomSheet_copyButton"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/inviteLinkBottomSheet_shareButton"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/inviteLinkBottomSheet_linkContainer"
+            app:layout_constraintTop_toBottomOf="@id/inviteLinkBottomSheet_linkContainer"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/inviteLinkBottomSheet_shareButtonContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_invite_link_button"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintEnd_toEndOf="@id/inviteLinkBottomSheet_linkContainer"
+        app:layout_constraintStart_toEndOf="@id/inviteLinkBottomSheet_copyButtonContainer"
+        app:layout_constraintTop_toBottomOf="@id/inviteLinkBottomSheet_linkContainer">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/inviteLinkBottomSheet_shareButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:clickable="false"
+            android:drawableLeft="@drawable/share_arrow"
+            android:gravity="center"
+            android:text="@string/InviteLinkBottomSheet_shareButton"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/inviteLinkBottomSheet_manageInviteLinks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/InviteLinkBottomSheet_manageInviteLinks"
+        android:textColor="#50A8E9"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inviteLinkBottomSheet_copyButtonContainer" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
